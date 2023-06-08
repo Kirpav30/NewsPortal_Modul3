@@ -7,13 +7,13 @@ Posts
 {% endblock title %}
 
 {% block content %}
-   <h1>Все новости</h1>
+   <h1>Поиск</h1>
     <form action="" method="get">
        {{ filterset.form.as_p }}
        <input type="submit" value="Найти" />
    </form>
    <hr>
-   {% if posts %}
+   {% if post_search %}
        <table>
            <tr>
                <td>Заголовок</td>
@@ -22,7 +22,7 @@ Posts
                <td>Дата публикации</td>
            </tr>
 
-           {% for post in posts %}
+           {% for post in post_search %}
            <tr>
                <td>{{ post.title|censor }}</td>
                <td>{{ post.categoryType|censor }}</td>
@@ -33,7 +33,7 @@ Posts
 
        </table>
    {% else %}
-       <h2>Новостей нет!</h2>
+       <h2>Поиск не дал результатов!</h2>
    {% endif %}
    {% if page_obj.has_previous %}
        <a href="?{% url_replace page=1 %}">1</a>

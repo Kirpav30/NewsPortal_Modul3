@@ -13,6 +13,9 @@ Posts
        <input type="submit" value="Найти" />
    </form>
    <hr>
+     {% if perms.news.add_post %}
+    <a href="{% url 'post_create' %}">Добавить пост</a>
+    {% endif %}
    {% if posts %}
        <table>
            <tr>
@@ -20,6 +23,10 @@ Posts
                <td>Категория</td>
                <td>Статья</td>
                <td>Дата публикации</td>
+
+               {% if perms.news.change_post or perms.news.delete_post %}
+                <td>Действия</td>
+                {% endif %}
            </tr>
 
            {% for post in posts %}
@@ -29,6 +36,14 @@ Posts
                <td>{{ post.text|censor|truncatewords:3 }}</td>
                <td>{{ post.dateCreate }}</td>
            </tr>
+           <td>
+                    {% if perms.news.change_post %}
+                    <a href="{% url 'post_update' pk=post.id %}">Изменить</a>
+                    {% endif %}
+                    {% if perms.news.delete_post %}
+                    <a href="{% url 'post_delete' post.id %}">Удалить</a>
+                    {% endif %}
+           </td>
            {% endfor %}
 
        </table>

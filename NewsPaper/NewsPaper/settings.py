@@ -162,4 +162,11 @@ EMAIL_HOST_PASSWORD = "iliezvcovrxqizez"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
+CELERY_TIME_ZONE = 'Europe/Moscow'
 DEFAULT_FROM_EMAIL = "example@yandex.ru"
+
+CELERY_BROKER_URL = 'redis://default:UIw7lmfU0ewhjAOh2RwnbrOnw5yZsctg@redis-17777.c280.us-central1-2.gce.cloud.redislabs.com:17777'
+CELERY_RESULT_BACKEND = 'redis://default:UIw7lmfU0ewhjAOh2RwnbrOnw5yZsctg@redis-17777.c280.us-central1-2.gce.cloud.redislabs.com:17777'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
